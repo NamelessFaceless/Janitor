@@ -36,7 +36,7 @@ client.on('message', msg => {
     if(msg.author.bot)
         return;
 
-    if(trackedChannels.indexOf(msg.channel.id) >=0 && whitelistedUsers.indexOf(msg.author.id))
+    if(trackedChannels.indexOf(msg.channel.id) >=0 && !whitelistedUsers.indexOf(msg.author.id))
     {
         if(tagRegex.test(msg.cleanContent) === false)
         {
