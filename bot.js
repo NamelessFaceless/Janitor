@@ -6,6 +6,7 @@ require('dotenv').config();
 let tagRegex = /\[(.*?)]/g;
 
 let trackedChannels = [
+    '438072673961246730', // #testing_zone
     '438198766928003072', // #recruitment_aether
     '438198858942644224', // #recruitment_primal
     '438200491990712334', // #recruitment_chaos
@@ -36,7 +37,7 @@ client.on('message', msg => {
     if(msg.author.bot)
         return;
 
-    if(trackedChannels.indexOf(msg.channel.id) >=0 && !whitelistedUsers.indexOf(msg.author.id))
+    if(trackedChannels.indexOf(msg.channel.id) >=0 /*&& !whitelistedUsers.indexOf(msg.author.id)*/)
     {
         if(tagRegex.test(msg.cleanContent) === false)
         {
