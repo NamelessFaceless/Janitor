@@ -33,15 +33,20 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if(msg.author.bot || whitelistedUsers.indexOf(msg.author.id))
+    if(msg.author.bot)
         return;
 
-    if(trackedChannels.indexOf(msg.channel.id) >=0)
+    if(trackedChannels.indexOf(msg.channel.id) >=0 && whitelistedUsers.indexOf(msg.author.id))
     {
         if(tagRegex.test(msg.cleanContent) === false)
         {
             msg.delete();
         }
+    }
+});
+
+client.login(process.env.BOT_TOKEN)
+
         //TODO: FINISH THIS YOU BIG FUCKING IDIOT
         /*
         else
@@ -61,7 +66,3 @@ client.on('message', msg => {
                 }
             })
         } */
-    }
-});
-
-client.login(process.env.BOT_TOKEN)
