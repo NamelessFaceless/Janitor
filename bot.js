@@ -43,6 +43,7 @@ client.on('message', msg => {
         {
             msg.delete();
         }
+        tagRegex.lastIndex = 0;
     }
 });
 
