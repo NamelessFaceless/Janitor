@@ -3,7 +3,7 @@ const client = new Discord.Client();
 require('dotenv').config();
 //const db = require('./db');
 
-let tagRegex = /\[(.*?)]/g;
+let tagRegex = /\[(.*?)]/ig;
 
 let trackedChannels = [
     '438072673961246730', // #testing_zone
