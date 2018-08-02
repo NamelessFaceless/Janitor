@@ -5,7 +5,7 @@ require('dotenv').config();
 
 let tagRegex = /\[(.*?)]/g;
 
-let trackedChannels = [
+const trackedChannels = [
     '438072673961246730', // #testing_zone
     '438198766928003072', // #recruitment_aether
     '438198858942644224', // #recruitment_primal
@@ -15,10 +15,15 @@ let trackedChannels = [
     '438201779927384064' // #recruitment_gaia
 ];
 
-let whitelistedUsers =  [
+const whitelistedUsers =  [
     '438583774544920586', // Bot itself, probably unnecessary but idgaf.
     '115192890929577987', // Sky
     '102254415171313664' // Kiri
+];
+
+const autoBanUsers = [
+    'Cody Sadler',
+    'Sorrik'
 ];
 
 // tag extraction for database
@@ -36,6 +41,15 @@ client.on('ready', () => {
 client.on('message', msg => {
     if(msg.author.bot)
         return;
+
+    if(autoBanUsers.includes(msg.author.username))
+    {
+        msg.guild.ban(msg.author);
+    }
+    if(msg.cleanContent.includes('Hello my name is Cody Sadler AKA Nahira Vae'))
+    {
+        msg.guild.ban(msg.author);
+    }
 
     if(trackedChannels.indexOf(msg.channel.id) >=0 /*&& !whitelistedUsers.indexOf(msg.author.id)*/)
     {
